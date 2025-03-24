@@ -1,5 +1,3 @@
-# stable-diffusion-setup-mac
-
 # Stable Diffusion Forge on macOS
 
 ## ✨ What is Stable Diffusion?
