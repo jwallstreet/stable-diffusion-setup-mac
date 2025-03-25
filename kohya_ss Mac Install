@@ -1,0 +1,92 @@
+# Installing Kohya_ss on MacBook Pro M1
+
+## Prerequisites
+Before installing Kohya_ss, ensure that you have the necessary dependencies installed on your system.
+
+### 1. Install Homebrew
+If you haven’t installed Homebrew yet, open Terminal and run:
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+Then, add Homebrew to your PATH:
+```sh
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+source ~/.zprofile
+```
+
+### 2. Install Dependencies
+Install essential packages using Homebrew:
+```sh
+brew install git cmake protobuf
+```
+
+### 3. Install Python (Recommended: Miniconda)
+Miniconda is recommended for managing Python environments:
+```sh
+brew install --cask miniconda
+```
+Then, initialize Conda:
+```sh
+conda init zsh
+source ~/.zshrc
+```
+Create a Python environment:
+```sh
+conda create -n kohya python=3.10 -y
+conda activate kohya
+```
+
+## Installing Kohya_ss
+
+### 1. Clone the Repository
+```sh
+git clone https://github.com/bmaltais/kohya_ss.git
+cd kohya_ss
+```
+
+### 2. Install Required Python Packages
+First, ensure `pip` is up-to-date:
+```sh
+pip install --upgrade pip
+```
+Then install the required dependencies:
+```sh
+pip install -r requirements.txt
+```
+
+### 3. Install PyTorch
+Since MacBook M1 uses Apple Silicon, install PyTorch with MPS support:
+```sh
+pip install torch torchvision torchaudio
+```
+
+### 4. Verify Installation
+Run the following command to check if Kohya_ss is installed correctly:
+```sh
+python ./kohya_gui.py
+```
+
+If the GUI launches without errors, the installation is successful.
+
+## Optional: Enable MPS Acceleration
+To leverage Apple’s Metal Performance Shaders (MPS) backend for acceleration:
+```sh
+export PYTORCH_ENABLE_MPS_FALLBACK=1
+```
+
+## Troubleshooting
+If you encounter issues:
+- Ensure you are using Python 3.10
+- Try reinstalling dependencies: `pip install --force-reinstall -r requirements.txt`
+- Check for compatibility issues with the latest versions
+
+## Updating Kohya_ss
+To update the repository to the latest version:
+```sh
+cd kohya_ss
+git pull
+pip install --upgrade -r requirements.txt
+```
+
+## Conclusion
+You have successfully installed Kohya_ss on your MacBook Pro M1! Now you can use it for AI model training and inference.
